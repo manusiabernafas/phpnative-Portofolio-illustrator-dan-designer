@@ -1,0 +1,56 @@
+Template portofolio untuk ilustrator, desainer grafis, dan seniman dengan gaya zine cetak risograf yang jauh dari kesan template biasa. Kertas bertekstur, tinta pink dan biru yang sengaja bergeser seperti salah cetak, foto polaroid berselotip, stiker yang bergerak mengikuti kursor, karya yang digeser menyamping saat halaman di-scroll, cap alat gambar yang berputar, tiket daftar jasa, sampai formulir kontak berbentuk surat lengkap dengan perangko.
+
+Semua isi dikelola dari CMS: profil, foto, CV, karya dengan galeri, alat gambar (logo atau monogram), pengalaman, jasa beserta harga, testimoni, dan pesan masuk. Data contoh sudah lengkap dengan puluhan ilustrasi poster bergaya risograf sehingga tampilannya langsung meriah sejak pertama dibuka.
+Cara kerja
+Halaman depan disusun seperti zine: sampul dengan judul besar (kata tertentu otomatis diberi huruf miring dan stabilo), pita selotip berjalan berisi daftar jasa dan nama klien, halaman tentang dengan huruf awal besar dan angka yang dilingkari coretan, galeri karya horizontal, kotak pensil berisi cap alat yang berputar, tiket jasa, daftar isi riwayat kerja, tumpukan catatan testimoni, dan surat kontak. Nomor edisi zine dihitung otomatis dari bulan berjalan.
+
+Galeri karya memakai section yang menempel di layar: tinggi section disesuaikan dengan panjang lintasan, lalu setiap piksel scroll vertikal menggeser poster ke samping. Filter kategori menghitung ulang lintasan. Setiap karya punya lembar detail dengan cover berselotip, kartu info, cerita berformat, galeri polaroid dengan lightbox, dan navigasi karya sebelum/berikutnya.
+
+CMS memakai login dengan password hash, CSRF, kunci setelah 5 kali gagal, dan pembatalan sesi lain saat password diganti. Gambar yang diunggah dicek tipe aslinya lalu digambar ulang menjadi WebP. Formulir surat dikirim tanpa reload dan dilindungi honeypot, batas kirim per IP, serta penolakan pesan dobel; kotak masuk bisa diekspor ke CSV yang aman untuk Excel.
+Fitur
+Gaya zine risograf: kertas bertekstur, tinta salah cetak, selotip, stiker, polaroid (tanpa gradasi & tanpa emoji)
+Sampul kolase 3D: polaroid, stiker, dan coretan bergerak berlapis mengikuti kursor dan scroll
+Judul sampul otomatis diberi huruf miring serif dan blok stabilo
+Galeri karya bergeser menyamping saat halaman di-scroll (scroll horizontal), dengan filter kategori
+Poster karya miring yang tegak dan terangkat 3D saat disentuh kursor
+Cap alat gambar berputar dengan teks melingkar (SVG textPath) dan logo yang berbalik 3D
+Reveal 'halaman berbalik' dan stiker yang muncul saat di-scroll, coretan yang tergambar sendiri
+Pita selotip berjalan berisi daftar jasa dan nama klien
+Daftar jasa berbentuk tiket sobek dengan harga mulai
+Riwayat kerja & pendidikan berbentuk daftar isi zine
+Testimoni tumpukan catatan tempel yang bisa dibalik
+Formulir kontak berbentuk surat bergaris dengan perangko foto
+Lembar detail karya: cover berselotip, kartu info, galeri polaroid + lightbox, karya sebelum/berikutnya
+CMS lengkap: profil, foto, CV PDF, karya + galeri, alat, pengalaman, jasa, testimoni, pesan masuk
+4 warna aksen riso (pink, biru, teal, oranye) dari CMS
+Logo aplikasi satu warna + monogram otomatis untuk aplikasi tanpa logo
+Dashboard pengunjung, karya terpopuler, dan pesan terbaru
+Upload gambar otomatis jadi WebP, folder upload anti-eksekusi script
+Keamanan: PDO, CSRF, password_hash, kunci login, sesi batal saat ganti password, honeypot, batas kirim per IP
+Responsif HP 390px sampai 1920px, animasi mati otomatis untuk mode kurangi gerakan
+Data contoh lengkap dengan 30+ ilustrasi poster risograf, PHP Native tanpa framework
+Panduan instalasi
+Kebutuhan: PHP 8.1 atau lebih baru (ekstensi GD aktif, bawaan XAMPP) dan MySQL/MariaDB.
+
+Ekstrak ZIP lalu pindahkan folder porto-zine ke:
+
+XAMPP: C:\xampp\htdocs\porto-zine
+Laragon: C:\laragon\www\porto-zine
+Jalankan Apache dan MySQL.
+
+Buka http://localhost/phpmyadmin → Import → pilih database/porto_zine.sql → Import.
+
+Atau lewat terminal:
+
+mysql -u root -p < database/porto_zine.sql
+Sesuaikan config/database.php jika user/password MySQL kamu berbeda.
+
+Buka situs: http://localhost/porto-zine/
+
+CMS: http://localhost/porto-zine/index.php?page=login (atau tautan CMS di footer)
+
+Username: admin
+Password: admin123 (segera ganti di menu Akun)
+Ganti profil, karya, dan foto dari CMS, lalu upload ke hosting.
+
+Tips: naikkan upload_max_filesize dan post_max_size di php.ini (misal 20M) untuk mengunggah gambar karya beresolusi besar.
